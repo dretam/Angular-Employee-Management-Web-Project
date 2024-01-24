@@ -6,6 +6,9 @@
         <div class="alert alert-danger mt-2 mb-2" *ngIf="errorMessageTimeParadox">
             <div>{{errorMessageTimeParadox}}</div>
         </div>
+        <div class="alert alert-danger mt-2 mb-2" *ngIf="errorMessageUniqueUsername">
+            <div>{{errorMessageUniqueUsername}}</div>
+        </div>
         <div class="form-group mb-3">
             <label for="username">Username</label>
             <input class="form-control form-control-lg" type="text" id="username" placeholder="Input username" formControlName="username">

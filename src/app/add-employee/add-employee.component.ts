@@ -14,6 +14,8 @@ export class AddEmployeeComponent {
 
   errorMessageTimeParadox: string | undefined;
 
+  errorMessageUniqueUsername: string | undefined;
+
   employee: any;
 
   groupList: string[] = [
@@ -42,11 +44,28 @@ export class AddEmployeeComponent {
     onSubmit() {
       let dateNow = new Date();
       const value = this.detailForm.getRawValue();
+      let convertedUsername = value.username as string;
+      let statusCompare;
+
+      for (const employee of this.employeeService.employeeList) {
+        if(employee.username === convertedUsername) {
+          statusCompare = true;
+          break;
+        } else {
+          statusCompare = false;
+        }
+      }
+
       let convertedBirthDate = new Date(value.birthDate);
       if(convertedBirthDate.getFullYear() >= dateNow.getFullYear()) {
         this.errorMessageTimeParadox = 'Can not set birth date value more than or equal as today.';
         this.router.navigateByUrl('/employee/insert');
-      } else {
+      } 
+      else if(statusCompare) {
+        this.errorMessageUniqueUsername = 'Username has been used.';
+        this.router.navigateByUrl('/employee/insert');
+      }
+      else {
         this.errorMessageTimeParadox = undefined;
         this.employeeService.postEmployee(JSON.stringify(value));
   
