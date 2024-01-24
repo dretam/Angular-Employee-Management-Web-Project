@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="mt-3 mb-3">
+        <h2>Employee Insert Form</h2>
+    </div>
+    <form [formGroup]="detailForm">
+        <div class="alert alert-danger mt-2 mb-2" *ngIf="errorMessageTimeParadox">
+            <div>{{errorMessageTimeParadox}}</div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="username">Username</label>
+            <input class="form-control form-control-lg" type="text" id="username" placeholder="Input username" formControlName="username">
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['username'].touched && !detailForm.controls['username'].valid">
+                <div *ngIf="detailForm.controls['username'].errors?.['required']">
+                    Username is required.
+                </div>
+                <div *ngIf="detailForm.controls['username'].errors?.['minlength']">
+                    Username must be {{detailForm.controls['username'].errors?.['minlength']['requiredLength']}} chars.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="firstName">First Name</label>
+            <input class="form-control form-control-lg" type="text" id="firstName" placeholder="Input first name" formControlName="firstName">
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['firstName'].touched && !detailForm.controls['firstName'].valid">
+                <div *ngIf="detailForm.controls['firstName'].errors?.['required']">
+                    First name is required.
+                </div>
+                <div *ngIf="detailForm.controls['firstName'].errors?.['minlength']">
+                    First name must be {{detailForm.controls['firstName'].errors?.['minlength']['requiredLength']}} chars.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="lastName">Last Name</label>
+            <input class="form-control form-control-lg" type="text" id="lastName" placeholder="Input last name" formControlName="lastName">
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['lastName'].touched && !detailForm.controls['lastName'].valid">
+                <div *ngIf="detailForm.controls['lastName'].errors?.['required']">
+                    Last name is required.
+                </div>
+                <div *ngIf="detailForm.controls['lastName'].errors?.['minlength']">
+                    Last name must be {{detailForm.controls['lastName'].errors?.['minlength']['requiredLength']}} chars.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input class="form-control form-control-lg" type="email" id="email" placeholder="Input email" formControlName="email">
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['email'].touched && !detailForm.controls['email'].valid">
+                <div *ngIf="detailForm.controls['email'].errors?.['required']">
+                    Email is required.
+                </div>
+                <div *ngIf="detailForm.controls['email'].errors?.['email']">
+                    Format email is not correct.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="birthDate">Birth Date</label>
+            <input class="form-control form-control-lg" type="date" id="birthDate" formControlName="birthDate">
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['birthDate'].touched && !detailForm.controls['birthDate'].valid">
+                <div *ngIf="detailForm.controls['birthDate'].errors?.['required']">
+                    Birth date is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="basicSalary">Basic Salary</label>
+            <input class="form-control form-control-lg" type="number" id="basicSalary" formControlName="basicSalary" min="0">
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['basicSalary'].touched && !detailForm.controls['basicSalary'].valid">
+                <div *ngIf="detailForm.controls['basicSalary'].errors?.['required']">
+                    Basic salary is required.
+                </div>
+                <div *ngIf="detailForm.controls['basicSalary'].errors?.['min']">
+                    Minimum value of basic salary is Rp 1.000.000,00.
+                </div>
+                <div *ngIf="detailForm.controls['basicSalary'].errors?.['max']">
+                    Maximum value of basic salary is Rp 50.000.000,00.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3 d-flex flex-column align-items-start">
+            <label for="status">Status</label>
+            <input type="checkbox" id="status" formControlName="status" value="0">
+        </div>
+        <div class="form-group mb-3">
+            <label for="group">Group</label>
+            <select name="option" class="form-control form-control-lg" id="group" formControlName="group">
+                <option style="text-align: center" [value]="null">
+                    Choose one of these options
+                </option>
+                <option style="text-align: center" *ngFor="let group of groupList" [value]="group">
+                    {{ group }}
+                </option>
+            </select>
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['group'].touched && !detailForm.controls['group'].valid">
+                <div *ngIf="detailForm.controls['group'].errors?.['required']">
+                    Group is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="description">Description</label>
+            <textarea class="form-control form-control-lg" rows="4" type="text" id="description" formControlName="description" placeholder="Input description"></textarea>
+            <div class="alert alert-danger mt-2 mb-2" *ngIf="detailForm.controls['description'].touched && !detailForm.controls['description'].valid">
+                <div *ngIf="detailForm.controls['description'].errors?.['required']">
+                    Description is required.
+                </div>
+                <div *ngIf="detailForm.controls['description'].errors?.['minlength']">
+                    Minimum length of description must be {{detailForm.controls['description'].errors?.['minlength']['requiredLength']}} chars.
+                </div>
+                <div *ngIf="detailForm.controls['description'].errors?.['maxlength']">
+                    Maximum length of description must be {{detailForm.controls['description'].errors?.['maxlength']['requiredLength']}} chars.
+                </div>
+            </div>
+        </div>
+        <div class="button-group mt-2 mb-2">
+            <button type="submit" class="btn btn-primary me-2" (click)="onSubmit()" [disabled]="!detailForm.controls['username'].valid || !detailForm.controls['email'].valid || !detailForm.controls['birthDate'].valid">Save</button>
+            <button type="button" class="btn btn-primary" routerLink="/employee">Back to Employee Index</button>
+        </div>
+    </form>
+</div>

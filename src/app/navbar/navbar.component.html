@@ -1,0 +1,17 @@
+<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+            Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/employee" routerLinkActive="active">Employee</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-danger btn-sm mt-1 mb-1 text-white" (click)="onSignOut()">Sign Out</a>
+        </li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="mt-3 mb-3">
+        <h2>Employee Profile</h2>
+    </div>
+    <form>
+        <div class="form-group mb-3">
+            <label for="username">Username</label>
+            <input class="form-control form-control-lg" type="text" id="username" readonly value="{{employee.username}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="fullName">Full Name</label>
+            <input class="form-control form-control-lg" type="text" id="fullName" readonly value="{{employee.firstName + ' ' + employee.lastName}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input class="form-control form-control-lg" type="text" id="email" readonly value="{{employee.email}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="birthDate">Birth Date</label>
+            <input class="form-control form-control-lg" type="text" id="birthDate" readonly value="{{employee.birthDate | date: 'dd MMMM yyyy'}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="basicSalary">Basic Salary</label>
+            <input class="form-control form-control-lg" type="text" id="basicSalary" readonly value="{{employee.basicSalary | currency: 'Rp '}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="status">Status</label>
+            <input class="form-control form-control-lg" type="text" id="status" readonly value="{{(employee.status == 1 ? 'Permanent Employee' : 'Contract Employee')}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="group">Group</label>
+            <input class="form-control form-control-lg" type="text" id="group" readonly value="{{employee.group}}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="description">Description</label>
+            <input class="form-control form-control-lg" type="text" id="description" readonly value="{{employee.description}}">
+        </div>
+        <button type="button" class="btn btn-primary mt-2 mb-2" routerLink="/employee">Back to Employee Index</button>
+    </form>
+</div>
